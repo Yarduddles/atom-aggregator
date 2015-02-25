@@ -1,9 +1,15 @@
 {
   "name": "numeric-aggregators",
   "main": "./lib/aggregate",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Aggregate (Sum, Max, Min, Count, Avg) selections of numbers",
-  "activationEvents": ["aggregate:sum","aggregate:max","aggregate:min","aggregate:count","aggregate:avg"],
+  "activationEvents": [
+    "aggregate:sum",
+    "aggregate:max",
+    "aggregate:min",
+    "aggregate:count",
+    "aggregate:avg"
+  ],
   "repository": "https://github.com/Yarduddles/atom-aggregator.git",
   "license": "MIT",
   "engines": {
@@ -12,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/Yarduddles/atom-aggregator/issues"
   },
-  "keywords":[
+  "keywords": [
     "aggregate",
     "sum",
     "count",
