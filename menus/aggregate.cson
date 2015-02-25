@@ -1,0 +1,59 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Aggregate'
+      'submenu': [
+        {
+          'label': 'Average'
+          'command': 'aggregate:avg'
+        },
+        {
+          'label': 'Count'
+          'command': 'aggregate:count'
+        },
+        {
+          'label': 'Max'
+          'command': 'aggregate:max'
+        },
+        {
+          'label': 'Min'
+          'command': 'aggregate:min'
+        },
+        {
+          'label': 'Sum'
+          'command': 'aggregate:sum'
+        }
+      ]
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Aggregate'
+      'submenu': [
+        {
+          'label': 'Average'
+          'command': 'aggregate:avg'
+        },
+        {
+          'label': 'Count'
+          'command': 'aggregate:count'
+        },
+        {
+          'label': 'Max'
+          'command': 'aggregate:max'
+        },
+        {
+          'label': 'Min'
+          'command': 'aggregate:min'
+        },
+        {
+          'label': 'Sum'
+          'command': 'aggregate:sum'
+        }
+      ]
+    ]
+  }
+]
