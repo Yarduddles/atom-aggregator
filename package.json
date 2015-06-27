@@ -15,7 +15,7 @@
   "repository": "https://github.com/Yarduddles/atom-aggregator.git",
   "license": "MIT",
   "engines": {
-    "atom": ">=0.210.0 <2.0.0"
+    "atom": "^1.0.0"
   },
   "bugs": {
     "url": "https://github.com/Yarduddles/atom-aggregator/issues"
