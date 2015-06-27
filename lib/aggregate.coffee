@@ -2,11 +2,16 @@
 
 module.exports =
   activate: ->
-    atom.workspaceView.command "aggregate:sum", => @sum()
-    atom.workspaceView.command "aggregate:max", => @max()
-    atom.workspaceView.command "aggregate:min", => @min()
-    atom.workspaceView.command "aggregate:avg", => @avg()
-    atom.workspaceView.command "aggregate:count", => @count()
+    @subscriptions = new CompositeDisposable
+
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'aggregate:sum': => @sum()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'aggregate:max': => @max()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'aggregate:min': => @min()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'aggregate:avg': => @avg()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'aggregate:count': => @count()
+
+  deactivate: ->
+    @subscriptions.dispose()
 
   get_nums: (text) ->
     # A regex to grab all numbers available in the selected text
@@ -15,55 +20,55 @@ module.exports =
 
   sum: ->
     editor = atom.workspace.getActivePaneItem()
-    selection = editor.getSelection()
-
+    selection = editor.getLastSelection()
     text = selection.getText()
-    found = this.get_nums(text)
+
+    found = @get_nums(text)
 
     sum = 0.0
 
-    if !found
+    if not found
       return
 
     for n in found
       sum += parseFloat(n)
 
-    editor.getSelection().insertText("#{sum}")
+    selection.insertText("#{sum}")
 
   max: ->
     editor = atom.workspace.getActivePaneItem()
-    selection = editor.getSelection()
-
+    selection = editor.getLastSelection()
     text = selection.getText()
-    found = this.get_nums(text)
 
-    if !found
+    found = @get_nums(text)
+
+    if not found
       return
 
     max = Math.max found...
-    editor.getSelection().insertText("#{max}")
+    selection.insertText("#{max}")
 
   min: ->
     editor = atom.workspace.getActivePaneItem()
-    selection = editor.getSelection()
+    selection = editor.getLastSelection()
     text = selection.getText()
 
-    found = this.get_nums(text)
+    found = @get_nums(text)
 
-    if !found
+    if not found
       return
 
     min = Math.min found...
-    editor.getSelection().insertText("#{min}")
+    selection.insertText("#{min}")
 
   avg: ->
     editor = atom.workspace.getActivePaneItem()
-    selection = editor.getSelection()
+    selection = editor.getLastSelection()
     text = selection.getText()
 
-    found = this.get_nums(text)
+    found = @get_nums(text)
 
-    if !found
+    if not found
       return
 
     sum = 0.0
@@ -77,13 +82,13 @@ module.exports =
 
   count: ->
     editor = atom.workspace.getActivePaneItem()
-    selection = editor.getSelection()
+    selection = editor.getLastSelection()
     text = selection.getText()
 
-    found = this.get_nums(text)
+    found = @get_nums(text)
 
-    if !found
+    if not found
       return
 
     count = found.length
-    editor.getSelection().insertText("#{count}")
+    selection.insertText("#{count}")
